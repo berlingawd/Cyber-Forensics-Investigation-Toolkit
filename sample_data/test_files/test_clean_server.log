@@ -1,0 +1,11 @@
+# Simulated auth.log — CLEAN SERVER (routine operations only)
+Apr  5 07:00:00 prodserver sshd[4001]: Accepted publickey for sysadmin from 172.16.0.10 port 22001 ssh2
+Apr  5 07:00:01 prodserver sshd[4002]: pam_unix(sshd:session): session opened for user sysadmin
+Apr  5 07:05:00 prodserver sudo[4100]: sysadmin : COMMAND=/bin/systemctl status apache2
+Apr  5 08:30:00 prodserver sshd[4200]: Accepted password for appuser from 172.16.0.20 port 33001 ssh2
+Apr  5 08:30:01 prodserver sshd[4201]: pam_unix(sshd:session): session opened for user appuser
+Apr  5 09:00:00 prodserver sudo[4300]: appuser : COMMAND=/usr/bin/git pull origin main
+Apr  5 12:00:00 prodserver sshd[4400]: pam_unix(sshd:session): session closed for user appuser
+Apr  5 17:00:00 prodserver sshd[4500]: Accepted publickey for sysadmin from 172.16.0.10 port 22099 ssh2
+Apr  5 17:05:00 prodserver sudo[4600]: sysadmin : COMMAND=/bin/systemctl restart apache2
+Apr  5 17:10:00 prodserver sshd[4700]: pam_unix(sshd:session): session closed for user sysadmin

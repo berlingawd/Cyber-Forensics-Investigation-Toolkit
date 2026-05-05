@@ -1,0 +1,24 @@
+# ── Core (required) ──────────────────────────────────────────────────────────
+flask>=3.0
+werkzeug>=3.0
+python-dateutil>=2.8
+reportlab>=4.0
+
+# ── Optional enhancements ─────────────────────────────────────────────────────
+# Install these for extra module features:
+
+# Image EXIF metadata (Metadata Extractor module)
+# pip install Pillow
+Pillow>=10.0
+
+# PDF metadata extraction (Metadata Extractor module)
+# pip install pypdf
+pypdf>=3.0
+
+# PCAP network analysis (PCAP Analyzer module)
+# pip install scapy
+scapy>=2.5
+
+# YARA malware rules (Malware Scanner module)
+# pip install yara-python
+# yara-python>=4.3

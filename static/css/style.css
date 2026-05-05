@@ -1,0 +1,272 @@
+/* ============================================================
+   Cyber Forensics Investigation Toolkit — SOC Dark Theme
+   ============================================================ */
+
+:root {
+  --bg:       #0f172a;
+  --card:     #1e293b;
+  --border:   #334155;
+  --text:     #f1f5f9;
+  --muted:    #94a3b8;
+  --primary:  #22c55e;
+  --primary2: #16a34a;
+  --secondary:#3b82f6;
+  --danger:   #ef4444;
+  --warning:  #f59e0b;
+  --shadow:   0 20px 60px rgba(0,0,0,.45);
+  --radius:   14px;
+}
+
+html, body { height: 100%; }
+
+body {
+  background:
+    radial-gradient(900px 500px at 15% 5%, rgba(59,130,246,.16), transparent 60%),
+    radial-gradient(900px 500px at 80% 0%, rgba(34,197,94,.14),  transparent 55%),
+    linear-gradient(180deg, var(--bg) 0%, #0b1020 100%);
+  color: var(--text);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* ── Typography ─────────────────────────────────────────── */
+.cf-page-title { font-weight: 800; letter-spacing: .02em; }
+.cf-muted       { color: var(--muted) !important; }
+.cf-kicker {
+  text-transform: uppercase;
+  letter-spacing: .22em;
+  font-size: .72rem;
+  color: var(--muted);
+}
+
+/* ── Navbar ─────────────────────────────────────────────── */
+.cf-navbar {
+  background: rgba(15,23,42,.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(51,65,85,.8);
+}
+.cf-navbar .nav-link       { color: var(--muted); font-weight: 500; }
+.cf-navbar .nav-link:hover { color: var(--text); }
+.cf-navbar .nav-link.active{ color: var(--text); }
+.cf-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+}
+.cf-brand-badge {
+  width: 10px; height: 10px;
+  border-radius: 999px;
+  background: var(--primary);
+  box-shadow: 0 0 0 4px rgba(34,197,94,.18);
+}
+
+/* ── Cards ──────────────────────────────────────────────── */
+.cf-card {
+  background: linear-gradient(180deg, rgba(30,41,59,.92), rgba(22,36,58,.88));
+  border: 1px solid rgba(51,65,85,.9);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.cf-card-header {
+  border-bottom: 1px solid rgba(51,65,85,.75);
+  background: rgba(15,23,42,.35);
+}
+.cf-card .card-header,
+.cf-card .card-body { color: var(--text); }
+
+/* ── Buttons ────────────────────────────────────────────── */
+.btn-cf-primary {
+  background: var(--primary);
+  border: 1px solid rgba(34,197,94,.55);
+  color: #06110a;
+  font-weight: 700;
+}
+.btn-cf-primary:hover {
+  background: var(--primary2);
+  border-color: rgba(34,197,94,.9);
+  color: #06110a;
+}
+.btn-cf-secondary {
+  background: rgba(59,130,246,.16);
+  border: 1px solid rgba(59,130,246,.55);
+  color: var(--text);
+  font-weight: 700;
+}
+.btn-cf-secondary:hover {
+  background: rgba(59,130,246,.28);
+  border-color: rgba(59,130,246,.85);
+  color: var(--text);
+}
+.btn-cf-ghost {
+  background: rgba(15,23,42,.40);
+  border: 1px solid rgba(51,65,85,.95);
+  color: var(--text);
+  font-weight: 600;
+}
+.btn-cf-ghost:hover {
+  border-color: rgba(34,197,94,.8);
+  color: var(--text);
+}
+
+/* ── Forms ──────────────────────────────────────────────── */
+.cf-input, .cf-select, .cf-textarea {
+  background: rgba(2,6,23,.35) !important;
+  border: 1px solid rgba(51,65,85,.95) !important;
+  color: var(--text) !important;
+}
+.cf-input::placeholder { color: rgba(148,163,184,.75); }
+.cf-input:focus, .cf-select:focus, .cf-textarea:focus {
+  box-shadow: 0 0 0 .2rem rgba(59,130,246,.18) !important;
+  border-color: rgba(59,130,246,.75) !important;
+}
+
+/* ── Tables ─────────────────────────────────────────────── */
+.table-cf {
+  --bs-table-bg: transparent;
+  --bs-table-color: var(--text);
+  --bs-table-border-color: rgba(51,65,85,.75);
+  margin-bottom: 0;
+}
+.table-cf thead th {
+  color: var(--muted);
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  border-bottom: 1px solid rgba(51,65,85,.85);
+}
+.table-cf tbody tr { transition: background .12s ease; cursor: pointer; }
+.table-cf tbody tr:hover { background: rgba(59,130,246,.08); }
+.table-cf code { color: #a7f3d0; }
+
+/* ── Timeline ───────────────────────────────────────────── */
+.cf-timeline { max-height: 420px; overflow: auto; padding-right: .35rem; }
+.cf-timeline-item {
+  border-left: 3px solid rgba(34,197,94,.75);
+  padding: .35rem 0 .35rem .9rem;
+  margin: .2rem 0;
+}
+.cf-timeline-item strong { color: var(--text); }
+
+/* ── Output pane (pre) ──────────────────────────────────── */
+.cf-pre {
+  background: rgba(2,6,23,.42);
+  border: 1px solid rgba(51,65,85,.9);
+  border-radius: 12px;
+  padding: .9rem;
+  white-space: pre-wrap;
+  color: #dbeafe;
+  min-height: 210px;
+  font-size: .82rem;
+  line-height: 1.55;
+}
+
+/* ── Custom Tab Bar ─────────────────────────────────────── */
+.cf-tab-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .3rem;
+  border-bottom: 1px solid rgba(51,65,85,.85);
+  padding-bottom: .45rem;
+  margin-bottom: .2rem;
+}
+.cf-tab-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 7px 7px 0 0;
+  color: var(--muted);
+  padding: .42rem .8rem;
+  font-size: .82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .15s ease;
+  white-space: nowrap;
+}
+.cf-tab-btn:hover {
+  background: rgba(59,130,246,.10);
+  color: var(--text);
+  border-color: rgba(59,130,246,.4);
+}
+.cf-tab-btn.active {
+  background: rgba(34,197,94,.12);
+  color: var(--text);
+  border-color: rgba(34,197,94,.5);
+  border-bottom: 2px solid var(--primary);
+}
+/* Metadata tab — purple accent */
+.cf-tab-meta { color: #d8b4fe !important; }
+.cf-tab-meta.active {
+  background: rgba(168,85,247,.12) !important;
+  border-color: #a855f7 !important;
+  border-bottom-color: #a855f7 !important;
+}
+/* Phishing tab — orange accent */
+.cf-tab-email { color: #fed7aa !important; }
+.cf-tab-email.active {
+  background: rgba(251,146,60,.12) !important;
+  border-color: #f97316 !important;
+  border-bottom-color: #f97316 !important;
+}
+
+/* ── Helpers ────────────────────────────────────────────── */
+.cf-divider { height: 1px; background: rgba(51,65,85,.75); }
+.cf-badge {
+  border: 1px solid rgba(51,65,85,.9);
+  background: rgba(2,6,23,.22);
+  color: var(--muted);
+}
+.cf-footer {
+  border-top: 1px solid rgba(51,65,85,.8);
+  color: var(--muted);
+}
+
+/* ── Hero (index) ───────────────────────────────────────── */
+.cf-hero {
+  background: linear-gradient(135deg, rgba(34,197,94,.06) 0%, rgba(59,130,246,.08) 100%);
+  border: 1px solid rgba(51,65,85,.7);
+  border-radius: 20px;
+}
+.cf-hero-terminal {
+  background: rgba(2,6,23,.7);
+  border: 1px solid rgba(51,65,85,.9);
+  border-radius: 12px;
+  font-family: "Courier New", monospace;
+  font-size: .78rem;
+  color: #86efac;
+  padding: 1rem 1.2rem;
+  line-height: 1.7;
+}
+.cf-hero-terminal .t-dim   { color: rgba(134,239,172,.45); }
+.cf-hero-terminal .t-blue  { color: #93c5fd; }
+.cf-hero-terminal .t-green { color: #86efac; }
+.cf-hero-terminal .t-warn  { color: #fde68a; }
+
+/* Module cards */
+.cf-module-card {
+  background: linear-gradient(180deg, rgba(30,41,59,.85), rgba(22,36,58,.80));
+  border: 1px solid rgba(51,65,85,.85);
+  border-radius: 14px;
+  transition: border-color .2s, box-shadow .2s;
+}
+.cf-module-card:hover {
+  border-color: rgba(34,197,94,.45);
+  box-shadow: 0 8px 32px rgba(34,197,94,.08);
+}
+.cf-module-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+}
+
+/* Step circles */
+.cf-step-circle {
+  width: 40px; height: 40px;
+  border-radius: 999px;
+  background: rgba(34,197,94,.12);
+  border: 2px solid rgba(34,197,94,.4);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800;
+  color: var(--primary);
+  flex-shrink: 0;
+}

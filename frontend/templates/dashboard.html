@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Cyber Forensics Toolkit</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="/static/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top cf-navbar">
+  <div class="container-fluid px-3 px-lg-4">
+    <a class="navbar-brand cf-brand" href="/">
+      <span class="cf-brand-badge"></span>
+      Forensics Toolkit
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMain">
+      <div class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+        <a class="nav-link" href="/"><i class="bi bi-house"></i> Home</a>
+        <a class="nav-link" href="/upload"><i class="bi bi-cloud-upload"></i> Upload Evidence</a>
+        <a class="nav-link active" href="/dashboard"><i class="bi bi-grid-3x3-gap"></i> Dashboard</a>
+        <a class="nav-link" href="/dashboard#reports"><i class="bi bi-file-earmark-pdf"></i> Reports</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid py-4 px-3 px-lg-4">
+
+  <!-- Page header -->
+  <div class="d-flex flex-wrap align-items-end justify-content-between gap-2 mb-3">
+    <div>
+      <div class="cf-kicker">SOC / DFIR Workbench</div>
+      <h2 class="cf-page-title mb-0"><i class="bi bi-grid-3x3-gap"></i> Investigation Dashboard</h2>
+      <div class="cf-muted small mt-1">Select a case, click an evidence file, run analysis, and generate reports.</div>
+    </div>
+    <div class="d-flex gap-2 flex-wrap">
+      <a class="btn btn-cf-ghost" href="/upload"><i class="bi bi-cloud-upload"></i> Upload Evidence</a>
+      <a class="btn btn-cf-secondary" href="/"><i class="bi bi-house"></i> Home</a>
+    </div>
+  </div>
+
+  <!-- Case Management -->
+  <div class="card cf-card mb-4">
+    <div class="card-header cf-card-header py-3">
+      <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+        <div class="d-flex align-items-center gap-2">
+          <i class="bi bi-briefcase"></i>
+          <strong>Case Management</strong>
+        </div>
+        <span class="badge cf-badge">Database: SQLite</span>
+      </div>
+    </div>
+    <div class="card-body p-3 p-md-4">
+      <div class="row g-3 align-items-end">
+        <div class="col-md-6 col-lg-4">
+          <label class="form-label mb-1">Select Case</label>
+          <select class="form-select cf-select" id="caseSelect">
+            <option value="">-- Select case --</option>
+            {% for c in cases %}
+            <option value="{{ c.case_id }}" {% if current_case and current_case.case_id == c.case_id %}selected{% endif %}>
+              {{ c.case_name }} ({{ c.case_id }})
+            </option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-md-6 col-lg-5">
+          <div class="small cf-muted mb-1">Active case details</div>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="badge cf-badge"><i class="bi bi-tag"></i> Case ID: {{ current_case.case_id if current_case else "—" }}</span>
+            <span class="badge cf-badge"><i class="bi bi-person"></i> Investigator: {{ current_case.investigator_name if current_case else "—" }}</span>
+            <span class="badge cf-badge"><i class="bi bi-clock"></i> Created: {{ (current_case.created_at[:19] if current_case and current_case.created_at else "—") }}</span>
+          </div>
+        </div>
+        <div class="col-lg-3 d-flex gap-2 justify-content-lg-end flex-wrap">
+          <button class="btn btn-cf-primary" id="btnNewCase"><i class="bi bi-plus-circle"></i> New Case</button>
+          <a href="/upload" class="btn btn-cf-ghost"><i class="bi bi-cloud-upload"></i> Upload</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- LEFT column: Evidence + Analysis Controls -->
+    <div class="col-lg-5">
+
+      <!-- Evidence Vault -->
+      <div class="card cf-card mb-4">
+        <div class="card-header cf-card-header d-flex justify-content-between align-items-center py-3">
+          <div class="d-flex align-items-center gap-2">
+            <i class="bi bi-collection"></i>
+            <strong>Evidence Vault</strong>
+          </div>
+          <span class="badge cf-badge" id="evidenceCount">
+            <i class="bi bi-layers"></i> {{ evidence_list|length }} file(s)
+          </span>
+        </div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-hover table-cf align-middle">
+              <thead>
+                <tr>
+                  <th style="min-width:170px;">File</th>
+                  <th style="width:80px;">Type</th>
+                  <th style="min-width:150px;">SHA-256</th>
+                  <th style="width:150px;">Collected</th>
+                </tr>
+              </thead>
+              <tbody id="evidenceTable">
+                {% for e in evidence_list %}
+                <tr class="evidence-row" data-filename="{{ e.file_name }}">
+                  <td>{{ e.file_name }}</td>
+                  <td>
+                    {% if e.evidence_type == "pcap" %}
+                      <span class="badge text-bg-primary"><i class="bi bi-diagram-3"></i> pcap</span>
+                    {% elif e.evidence_type == "log" %}
+                      <span class="badge text-bg-info"><i class="bi bi-file-text"></i> log</span>
+                    {% elif e.evidence_type == "email" %}
+                      <span class="badge" style="background:rgba(251,146,60,.2);color:#fed7aa;border:1px solid rgba(251,146,60,.4);">
+                        <i class="bi bi-envelope"></i> email
+                      </span>
+                    {% elif e.evidence_type == "image" %}
+                      <span class="badge" style="background:rgba(168,85,247,.2);color:#d8b4fe;border:1px solid rgba(168,85,247,.4);">
+                        <i class="bi bi-image"></i> image
+                      </span>
+                    {% elif e.evidence_type == "document" %}
+                      <span class="badge text-bg-secondary"><i class="bi bi-file-earmark-text"></i> doc</span>
+                    {% elif e.evidence_type == "file" %}
+                      <span class="badge text-bg-warning"><i class="bi bi-file-earmark-binary"></i> file</span>
+                    {% else %}
+                      <span class="badge text-bg-secondary">{{ e.evidence_type }}</span>
+                    {% endif %}
+                  </td>
+                  <td class="small">
+                    {% if e.hash_sha256 %}
+                      <code>{{ e.hash_sha256[:10] }}…{{ e.hash_sha256[-6:] }}</code>
+                    {% else %}
+                      <span class="cf-muted">—</span>
+                    {% endif %}
+                  </td>
+                  <td class="small cf-muted">{{ e.timestamp_collected[:16] if e.timestamp_collected else "—" }}</td>
+                </tr>
+                {% endfor %}
+                {% if not evidence_list %}
+                <tr>
+                  <td colspan="4" class="cf-muted p-3">
+                    <i class="bi bi-info-circle me-1"></i>
+                    Select a case or <a href="/upload" class="text-success">upload evidence</a> to begin.
+                  </td>
+                </tr>
+                {% endif %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Analysis Controls -->
+      <div class="card cf-card mb-4">
+        <div class="card-header cf-card-header py-3">
+          <div class="d-flex align-items-center gap-2">
+            <i class="bi bi-cpu"></i>
+            <strong>Analysis Controls</strong>
+          </div>
+          <div class="small cf-muted mt-1">
+            <i class="bi bi-hand-index me-1"></i>
+            Click any row above to auto-fill the file name, then click an analysis button.
+          </div>
+        </div>
+        <div class="card-body p-3 p-md-4">
+          <label class="form-label mb-1">Evidence file name</label>
+          <input type="text" class="form-control cf-input" id="evidenceFileName"
+            placeholder="e.g. auth.log  or  capture.pcap  (click a row above)">
+
+          <div class="cf-divider my-3"></div>
+
+          <div class="small cf-muted mb-2 fw-600">Core Modules</div>
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <button class="btn btn-cf-secondary" id="btnAnalyzeLog">
+              <i class="bi bi-file-text"></i> Analyze Log
+            </button>
+            <button class="btn btn-cf-secondary" id="btnTimeline">
+              <i class="bi bi-clock-history"></i> Generate Timeline
+            </button>
+            <button class="btn btn-cf-secondary" id="btnAnalyzePcap">
+              <i class="bi bi-diagram-3"></i> PCAP Analyzer
+            </button>
+            <button class="btn btn-cf-secondary" id="btnScanMalware">
+              <i class="bi bi-bug"></i> Malware Scan
+            </button>
+          </div>
+
+          <div class="cf-divider my-3"></div>
+
+          <div class="small cf-muted mb-2 fw-600">New Modules</div>
+          <div class="d-flex flex-wrap gap-2">
+            <button class="btn btn-cf-secondary" id="btnExtractMetadata"
+              style="border-color:rgba(168,85,247,.55);color:#d8b4fe;background:rgba(168,85,247,.10);">
+              <i class="bi bi-file-earmark-binary"></i> Extract Metadata
+            </button>
+            <button class="btn btn-cf-secondary" id="btnAnalyzeEmail"
+              style="border-color:rgba(251,146,60,.55);color:#fed7aa;background:rgba(251,146,60,.10);">
+              <i class="bi bi-envelope-exclamation"></i> Phishing Detection
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end left col -->
+
+    <!-- RIGHT column: Timeline + Output + Report -->
+    <div class="col-lg-7">
+
+      <!-- Attack Timeline -->
+      <div class="card cf-card mb-4">
+        <div class="card-header cf-card-header py-3">
+          <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+            <div class="d-flex align-items-center gap-2">
+              <i class="bi bi-clock-history"></i>
+              <strong>Attack Timeline</strong>
+            </div>
+            <span class="badge cf-badge"><i class="bi bi-sort-down"></i> Chronological</span>
+          </div>
+        </div>
+        <div class="card-body p-3 p-md-4">
+          <div id="timelineList" class="cf-timeline">
+            {% for t in timeline %}
+            <div class="cf-timeline-item">
+              <strong>{{ t.time_str }}</strong> — {{ t.event }}
+            </div>
+            {% endfor %}
+            {% if not timeline %}
+            <p class="cf-muted mb-0">
+              <i class="bi bi-info-circle me-1"></i>
+              Select a log file and click "Generate Timeline" to populate this panel.
+            </p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Analysis Output — CUSTOM TAB SYSTEM (no Bootstrap JS, no href tabs) -->
+      <div class="card cf-card mb-4">
+        <div class="card-header cf-card-header py-3">
+          <div class="d-flex align-items-center gap-2">
+            <i class="bi bi-terminal"></i>
+            <strong>Analysis Output</strong>
+          </div>
+          <div class="small cf-muted">Click a module button → results appear in the matching tab below.</div>
+        </div>
+        <div class="card-body p-3 p-md-4">
+
+          <!-- Tab buttons — use onclick switchTab(), NOT href links -->
+          <div class="cf-tab-bar" id="outputTabs">
+            <button class="cf-tab-btn active"      data-tab="tabLog"      onclick="switchTab('tabLog')">
+              <i class="bi bi-file-text"></i> Log Analysis
+            </button>
+            <button class="cf-tab-btn"             data-tab="tabPcap"     onclick="switchTab('tabPcap')">
+              <i class="bi bi-diagram-3"></i> PCAP
+            </button>
+            <button class="cf-tab-btn"             data-tab="tabMalware"  onclick="switchTab('tabMalware')">
+              <i class="bi bi-bug"></i> Malware
+            </button>
+            <button class="cf-tab-btn cf-tab-meta" data-tab="tabMetadata" onclick="switchTab('tabMetadata')">
+              <i class="bi bi-file-earmark-binary"></i> Metadata
+            </button>
+            <button class="cf-tab-btn cf-tab-email" data-tab="tabEmail"   onclick="switchTab('tabEmail')">
+              <i class="bi bi-envelope-exclamation"></i> Phishing
+            </button>
+          </div>
+
+          <!-- Tab panes — only first one visible; others hidden by default -->
+          <div class="mt-3">
+
+            <div class="cf-tab-pane" id="tabLog">
+              <pre id="analysisResult" class="cf-pre mb-0">Click "Analyze Log" on a log file to see results here.</pre>
+            </div>
+
+            <div class="cf-tab-pane" id="tabPcap" style="display:none;">
+              <pre id="pcapResult" class="cf-pre mb-0">Click "PCAP Analyzer" on a .pcap file to see results here.</pre>
+            </div>
+
+            <div class="cf-tab-pane" id="tabMalware" style="display:none;">
+              <pre id="malwareResult" class="cf-pre mb-0">Click "Malware Scan" on any file to see results here.</pre>
+            </div>
+
+            <div class="cf-tab-pane" id="tabMetadata" style="display:none;">
+              <div id="metadataResult" class="cf-pre mb-0" style="min-height:210px;">
+                Click <strong style="color:#d8b4fe;">Extract Metadata</strong> on an image, PDF, or Office document.
+              </div>
+            </div>
+
+            <div class="cf-tab-pane" id="tabEmail" style="display:none;">
+              <div id="emailResult" class="cf-pre mb-0" style="min-height:210px;">
+                Upload a <strong style="color:#fed7aa;">.eml</strong> email file, then click
+                <strong style="color:#fed7aa;">Phishing Detection</strong> to analyze it here.
+              </div>
+            </div>
+
+          </div><!-- end tab panes -->
+        </div>
+      </div>
+
+      <!-- Generate PDF Report -->
+      <div class="card cf-card mb-4" id="reports">
+        <div class="card-header cf-card-header py-3">
+          <div class="d-flex align-items-center gap-2">
+            <i class="bi bi-file-earmark-pdf"></i>
+            <strong>Forensic Report (PDF)</strong>
+          </div>
+          <div class="small cf-muted">Includes case info, evidence summary, suspicious IPs, timeline, and conclusion.</div>
+        </div>
+        <div class="card-body p-3 p-md-4">
+          <label class="form-label mb-1">Investigation conclusion (optional)</label>
+          <textarea class="form-control cf-textarea" id="reportConclusion" rows="3">Evidence collected and analyzed. Brute force login attempts detected from suspicious IPs. Investigation in progress.</textarea>
+          <div class="mt-3 d-flex flex-wrap align-items-center gap-2">
+            <button class="btn btn-cf-primary" id="btnGenerateReport">
+              <i class="bi bi-file-pdf"></i> Generate PDF Report
+            </button>
+            <span id="reportStatus"></span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end right col -->
+  </div><!-- end row -->
+</div><!-- end container -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/static/js/dashboard.js"></script>
+</body>
+</html>

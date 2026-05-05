@@ -1,0 +1,62 @@
+MIME-Version: 1.0
+Date: Mon, 15 Jan 2024 10:00:00 +0000
+Message-ID: <phish001@evil-server.ru>
+From: "PayPal Security" <noreply@paypa1-secure-update.ru>
+To: victim@example.com
+Reply-To: attacker@evil-server.ru
+Return-Path: <bounce@evil-server.ru>
+Subject: URGENT ACTION REQUIRED: Your PayPal account has been suspended
+X-Mailer: MassMailer Pro 4.2
+X-Originating-IP: 198.51.100.99
+Authentication-Results: mx.example.com;
+   spf=fail (sender IP is 198.51.100.99) smtp.mailfrom=paypa1-secure-update.ru;
+   dkim=fail header.i=@paypa1-secure-update.ru;
+   dmarc=fail action=none header.from=paypa1-secure-update.ru
+Content-Type: multipart/mixed; boundary="BOUNDARY_001"
+
+--BOUNDARY_001
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+Dear Customer,
+
+URGENT ACTION REQUIRED: Your PayPal account has been suspended due to unusual
+sign-in activity detected from an unauthorized location.
+
+To verify your account and restore access, click here to verify your identity:
+http://198.51.100.99/paypal-login/confirm?token=AAABBB111
+
+Your account will be closed permanently if you do not act immediately.
+
+Confirm your identity and update your billing information:
+http://bit.ly/3xFakeLink
+
+We noticed suspicious activity on your account. Your password will expire in
+24 hours unless you confirm your login credentials now.
+
+Kindly click the link below and provide your details:
+http://198.51.100.99/secure/update-account
+
+You have been selected for an account security review.
+
+Act now — this is a limited time offer to secure your account.
+
+Regards,
+PayPal Security Team
+
+--BOUNDARY_001
+Content-Type: application/octet-stream
+Content-Disposition: attachment; filename="PayPal_Invoice_2024.exe"
+Content-Transfer-Encoding: base64
+
+TVqQAAMAAAAEAAAA//8AALgAAAAAAAA
+QAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+--BOUNDARY_001
+Content-Type: application/zip
+Content-Disposition: attachment; filename="Account_Documents.zip"
+Content-Transfer-Encoding: base64
+
+UEsFBgAAAAAAAAAAAAAAAAAAAAAAAA==
+
+--BOUNDARY_001--

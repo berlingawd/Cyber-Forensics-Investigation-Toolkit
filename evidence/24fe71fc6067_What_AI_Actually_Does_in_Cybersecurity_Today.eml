@@ -1,0 +1,386 @@
+Delivered-To: joshimaulikk@gmail.com
+Received: by 2002:a17:906:9f96:b0:b9e:e73:8b1b with SMTP id gk22csp830548ejc;
+        Sat, 2 May 2026 06:05:03 -0700 (PDT)
+X-Received: by 2002:a05:622a:5485:b0:50f:be4f:465e with SMTP id d75a77b69052e-5104c014372mr44880531cf.53.1777727103500;
+        Sat, 02 May 2026 06:05:03 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1777727103; cv=none;
+        d=google.com; s=arc-20240605;
+        b=CIBR0jDtNG+Tnjy+sCAVrLLI0zO5rFWM+Q81xT0d3cwKekxW4eBzeXHqcQBYt0qp/E
+         Kv2QlnKrb331FGRvAH4/QfvMvYfPIwIy4W71yB0tzcnpuoM8wY3PbOxSvvS7Ow9swcgs
+         hJyvDnyqBhByTOcDE/edmAugYXbjwzriLTaqbvdN5y6z0hIDeWA+tYzY+zdxaazYH3/+
+         OJ5+rtP9FTu+69Jk3h1o37ZVrpIf1K97KkPYk0iriza7yfb7RDJrFbquQJJ+CdtxwhB9
+         qqzjk+y8KRqX3dZLs7WFFWudoEhWB5o9L7rjM/ookxeHJU72KqjPZAwdE9r4TtXXAsM2
+         lSzQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=feedback-id:list-unsubscribe:list-unsubscribe-post:mime-version
+         :subject:message-id:to:reply-to:from:date:cfbl-address
+         :dkim-signature:dkim-signature;
+        bh=XSUc/3ynsxyYX3bjkst55UC+wNxLU2EQKoiRaGVjeF8=;
+        fh=uMdsuRdEfA1zsBTbLE/DvAryTyv+zkKkEqeJ10GsaUU=;
+        b=Gsx+NXhrcTHUR+G7rhXeK+2WTlpBTJ7L128vHWVjgdpn+j/xXeWtQ5bTXMAgDHt0cV
+         4HjTB1N8oIlkTWVTp4bv6VTUxqfYOMOEYwENzEneP/c1/5xDo5J4ZmldVQGYaXXA+hkR
+         vLjM5Pg3xDeNsbSPi1Htv+/CY2D1XGG3LMW27/Lldu7Uw31iQaCw+75+aUu1mqqiHwvP
+         9JlmJpXv6I9uGnnd3bUWxYTuYRZoSnRA81E9P2/i7OlIIPWF/SfRIo0y8TTrNFtwad/n
+         laKkYlxbE7D9jAcAizqyHIVz11zcho+r+aLBNU242lB8jYkBGCNoUUHaYrAJ/2uEKfHC
+         pNSw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@coderedpro.com header.s=acdkim1 header.b=DqHSilXQ;
+       dkim=pass header.i=@acems2.com header.s=acdkim1 header.b=XXQWr28r;
+       spf=pass (google.com: domain of bounce-1136052-2906-4415465-joshimaulikk=gmail.com@em-1136052.coderedpro.com designates 52.128.42.107 as permitted sender) smtp.mailfrom="bounce-1136052-2906-4415465-Joshimaulikk=gmail.com@em-1136052.coderedpro.com";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=coderedpro.com
+Return-Path: <bounce-1136052-2906-4415465-Joshimaulikk=gmail.com@em-1136052.coderedpro.com>
+Received: from d34c.emsend3.com (d34c.emsend3.com. [52.128.42.107])
+        by mx.google.com with ESMTPS id d75a77b69052e-51040b22c6bsi44425551cf.213.2026.05.02.06.05.03
+        for <Joshimaulikk@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 02 May 2026 06:05:03 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounce-1136052-2906-4415465-joshimaulikk=gmail.com@em-1136052.coderedpro.com designates 52.128.42.107 as permitted sender) client-ip=52.128.42.107;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@coderedpro.com header.s=acdkim1 header.b=DqHSilXQ;
+       dkim=pass header.i=@acems2.com header.s=acdkim1 header.b=XXQWr28r;
+       spf=pass (google.com: domain of bounce-1136052-2906-4415465-joshimaulikk=gmail.com@em-1136052.coderedpro.com designates 52.128.42.107 as permitted sender) smtp.mailfrom="bounce-1136052-2906-4415465-Joshimaulikk=gmail.com@em-1136052.coderedpro.com";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=coderedpro.com
+X-KumoRef: eyJfQF8iOiJcXF8vIiwicmVjaXBpZW50IjoiSm9zaGltYXVsaWtrQGdtYWlsLmNvbSJ9
+DKIM-Signature: v=1; a=rsa-sha256; d=coderedpro.com; s=acdkim1; c=relaxed/relaxed;
+	bh=XSUc/3ynsxyYX3bjkst55UC+wNxLU2EQKoiRaGVjeF8=;
+	h=from:to:subject:date:mime-version:content-type:sender:cc:date:message-id:
+		list-unsubscribe:list-unsubscribe-post; t=1777727083; x=1778331883;
+	b=DqHSilXQjSLkGCmgsutxMmu/2GIf411aY0D+yWKLw5kcM9pKM019LUuLjTYpYCmlSvyxO5I8i
+	5vnrXQgwcAWdmfuqSSU3XXWiXNYl9LFDC4FwlRbQaW+lsH3AVMB0yXOYQI5rSHHDRi6J6XgK5Ve
+	cdxMFD6/bxzkopfNBthbkvFWbhp8O6D81g+plSuUrfkUEuELOcaDI21VVtBYwtgmJq/zmD/jD1c
+	TWQBNu2yJ83KezIVS2wihjE5wcXlzzudU/Q6h7pVqb9eqLtg941k3wThG1zOs30WKiNx6IzD/et
+	NYWeUYXGXU3U3sqHOYNrZC8FvZD1Q6d08l5xMSpuXn6g==;
+DKIM-Signature: v=1; a=rsa-sha256; d=acems2.com; s=acdkim1; c=relaxed/relaxed;
+	bh=XSUc/3ynsxyYX3bjkst55UC+wNxLU2EQKoiRaGVjeF8=;
+	h=from:to:subject:date:mime-version:content-type:sender:cc:date:message-id:
+		list-unsubscribe:list-unsubscribe-post; t=1777727083; x=1778331883;
+	b=XXQWr28rhuZJ1swcSIcZvPIDAY3c/COKDPPGALitNxo/UkIW2frASWvY5Qsr0u0xdOTRcsKGk
+	34hWBfEJ9pYPrZOPa9vWRzL4FjmZgTKZdzXrx31aIoz6nekZlclZxVf5/eV/iStoDvroL4hqvxK
+	MJdSRxDxL5aOCM+PZfzseJqI0idxgZXPVz3qIU6Weq+rmZelLrh8E8QuJOFs1Mglkd6Heh5QslN
+	PV8fJh2mJOMUww6SaahL7j/3k4U0x/Ds83nN+gBlw8HiNb8HwfEmhyhLhrfEFJwX4U0eLdH9sqc
+	V6fbJ8WsAJJmxmVn/8WPOBYjNGRcbnFKMEqFFeUlny9w==;
+CFBL-Address: fbl-report@acems1.com; report=arf
+X-Mailer: ActiveCampaign Mailer
+Received: from cell-3-7b78f68fc4-xdjwr (10.65.107.36)
+  by acems1.com (KumoMTA 10.13.180.31) 
+  with ESMTPS (TLSv1_3:TLS13_AES_256_GCM_SHA384)  id 7c884128462711f1997a0ec33b162893 for <Joshimaulikk@gmail.com>;
+  Sat, 2 May 2026 13:04:43 +0000
+Date: Sat, 2 May 2026 13:04:43 +0000 (GMT)
+From: CodeRed <learn@coderedpro.com>
+Reply-To: support@coderedpro.com
+To: Joshimaulikk@gmail.com
+Message-ID: <624422029.5948302.1777727083155@cell-3-7b78f68fc4-xdjwr>
+Subject: What AI Actually Does in Cybersecurity Today
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_5948301_536945991.1777727083154"
+X-DKIM-Options: s=acdkim1
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+X-Virtual-Mta: d33c.emsend3.com
+X-250ok-CID: 1136052-2906
+List-Unsubscribe: <https://email.eccouncil.org/box.php?nl=6&c=2906&m=2964&s=3418939be5ee3d5746f030a98a3b8cfa&funcml=unsub2&luha=1>,<mailto:unsubscribe-fdf1699f95e796eb398a9b9031745999-2906-3418939be5ee3d5746f030a98a3b8cfa@d33c.emsend3.com>
+Feedback-ID: 1136052:activecampaign
+X-Sending-Engine: Hedwig PCS
+X-Report-Abuse: Please report abuse to abuse@activecampaign.com
+X-lid: Sm9zaGltYXVsaWtrQGdtYWlsLmNvbSAsIGMyOTA2ICwgbTI5NjQgLCBzNDk5MDUwICwgbDY=
+X-mid: Sm9zaGltYXVsaWtrQGdtYWlsLmNvbSAsIGMyOTA2ICwgbTI5NjQgLCBzNDk5MDUw
+
+------=_Part_5948301_536945991.1777727083154
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Beyond the buzzwordsAI is no longer a future concept in cybersecurity. It i=
+s actively shaping how threats are detected, analyzed, and responded to tod=
+ay.=20
+
+From handling large volumes of data to identifying patterns that are easy t=
+o miss, AI is helping security professionals move faster and make more info=
+rmed decisions.=20
+
+**Where AI Is Making an Impact:**=20
+
+**=E2=9E=A4**
+
+**Faster Detection & Real-time Analysis:** AI processes vast data sets to i=
+dentify anomalies that traditional signature-based methods often miss.=20
+
+**=E2=9E=A4**
+
+**Behavior-based Analysis:** Unlike static signatures, AI monitors for unus=
+ual patterns, which is critical for identifying zero-day or evolving threat=
+s.=20
+
+**=E2=9E=A4**
+
+**Improved Response:** Automation helps prioritize high-severity alerts, re=
+ducing alert fatigue and speeding up mitigation.=20
+
+**=E2=9E=A4**
+
+**Predictive Capabilities:** AI uses historical data to anticipate attack p=
+aths, shifting security from reactive to proactive.=20
+
+Understanding this shift involves exploring how AI is applied across differ=
+ent areas, from incident detection and threat modeling to deep learning and=
+ broader business use cases.=20
+
+On CodeRed, these areas are reflected through its courses and learning path=
+s, such as:=20
+
+1. ChatGPT for Incident Detection and Response=20
+2. Deep Learning & Neural Networks=20
+3. AI-Powered Threat Modelling=20
+4. Master Python and Generative AI for Advanced Analytics=20
+5. Smart AI for Business Professionals=20
+6. Practical Artificial Intelligence for Professionals=20
+
+=E2=80=A6and many more to help you=20
+
+**apply AI effectively in modern cybersecurity.**=20
+
+**Explore AI Courses** https://coderedpro.com/collections/short-courses?%23=
+=3D&%23=3D&filter.p.m.filters.categories=3DArtificial+Intelligence&%23=3D&%=
+23=3D&%23=3D&sort_by=3Dcreated-ascending=20
+
+Warm Regards,=20
+
+**Team CodeRed**=20
+
+**Missed CodeRed's latest update again?=20
+Move mails to Primary from Promotions now!**=20
+
+=C2=A0=20
+
+**Copyright =C2=A9 2026** CodeRed https://coderedpro.com/ | Privacy Stateme=
+nt https://codered.eccouncil.org/privacy-policy
+_________________
+
+Sent to: Joshimaulikk@gmail.com
+
+Unsubscribe:
+http://email.eccouncil.org/proc.php?c=3D2906&m=3D2964&s=3D3418939be5ee3d574=
+6f030a98a3b8cfa&d=3D499050&v=3D2&nl=3D6&act=3Dunsub
+
+EC-Council International Limited, Sun Ave NE 101C, Albuquerque, New Mexico =
+87109, United States
+------=_Part_5948301_536945991.1777727083154
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html><html>
+<head>
+<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1.=
+0">
+</head>
+<body style=3D"padding: 0; margin: 0;">
+<div style=3D"display: none !important; padding: 0; height: 1px; font-size:=
+ 1px; background-color: inherit !important; opacity: 0; color: transparent;=
+ mso-line-height-rule: exactly; line-height:1px; mso-hide:all;">
+Beyond the buzzwords=20
+<div style=3D"display: none; max-height: 0px; overflow: hidden;">
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C
+</div>
+</div>
+<table width=3D"650" align=3D"center" border=3D"0" cellpadding=3D"0" cellsp=
+acing=3D"0" style=3D"border-width:1px;border-style:solid;border-color:#eeed=
+ed;border-spacing: 0px; border-spacing: 0px;">
+<tr>
+<td bgcolor=3D"#ffffff" align=3D"center" style=3D"font-family:'Arial', Helv=
+etica, Arial, 'sans-serif'; font-size: 18px; line-height: 24px; background-=
+color: #ffffff;">
+<table width=3D"650" border=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+<tr>
+<td><img src=3D"https://edm-image.s3.us-west-2.amazonaws.com/2026/April/EDM=
+-04-Warm-up/Banner.png" alt=3D"Ever Wonder How AI Is Reshaping Cybersecurit=
+y?" width=3D"650" style=3D"display: block; margin: auto;"></td>
+</tr>
+</table><!--Intro-Section-Start-->
+<table width=3D"650" border=3D"0" cellpadding=3D"0" cellspacing=3D"40">
+<tr>
+<td>AI is no longer a future concept in cybersecurity. It is actively shapi=
+ng how threats are detected, analyzed, and responded to today. <br><br>
+From handling large volumes of data to identifying patterns that are easy t=
+o miss, AI is helping security professionals move faster and make more info=
+rmed decisions.</td>
+</tr>
+</table><!--Intro-Section-End--> <!--Section01-Start-->
+<table bgcolor=3D"#efefef" width=3D"650" border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0">
+<tr>
+<td colspan=3D"2" style=3D"padding: 40px 40px 20px;"><strong style=3D"font-=
+size: 22px; line-height: 30px; color: #d91f26;">Where AI Is Making an Impac=
+t:</strong></td>
+</tr>
+<tr>
+<td colspan=3D"2" style=3D"padding: 0px 40px 40px;">
+<table align=3D"center" width=3D"570" border=3D"0" cellpadding=3D"0" cellsp=
+acing=3D"0">
+<tr valign=3D"top">
+<td width=3D"30" style=3D"color: #d91f26;"><strong>=E2=9E=A4</strong></td>
+<td width=3D"540"><strong>Faster Detection &amp; Real-time Analysis: </stro=
+ng> AI processes vast data sets to identify anomalies that traditional sign=
+ature-based methods often miss.</td>
+</tr>
+<tr>
+<td height=3D"8"></td>
+</tr>
+<tr valign=3D"top">
+<td width=3D"30" style=3D"color: #d91f26;"><strong>=E2=9E=A4</strong></td>
+<td width=3D"540"><strong>Behavior-based Analysis: </strong> Unlike static =
+signatures, AI monitors for unusual patterns, which is critical for identif=
+ying zero-day or evolving threats.</td>
+</tr>
+<tr>
+<td height=3D"8"></td>
+</tr>
+<tr valign=3D"top">
+<td width=3D"30" style=3D"color: #d91f26;"><strong>=E2=9E=A4</strong></td>
+<td width=3D"540"><strong>Improved Response: </strong> Automation helps pri=
+oritize high-severity alerts, reducing alert fatigue and speeding up mitiga=
+tion.</td>
+</tr>
+<tr>
+<td height=3D"8"></td>
+</tr>
+<tr valign=3D"top">
+<td width=3D"30" style=3D"color: #d91f26;"><strong>=E2=9E=A4</strong></td>
+<td width=3D"540"><strong>Predictive Capabilities: </strong> AI uses histor=
+ical data to anticipate attack paths, shifting security from reactive to pr=
+oactive.</td>
+</tr>
+</table></td>
+</tr>
+</table><!--Section01-End--> <!--Section02-Start-->
+<table width=3D"650" border=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+<tr>
+<td style=3D"padding: 40px 40px 20px;;">Understanding this shift involves e=
+xploring how AI is applied across different areas, from incident detection =
+and threat modeling to deep learning and broader business use cases.</td>
+</tr>
+<tr>
+<td style=3D"padding: 0px 40px 10px;;">On CodeRed, these areas are reflecte=
+d through its courses and learning paths, such as:</td>
+</tr>
+<tr>
+<td style=3D"padding: 0px 40px 10px; line-height: 30px;">1. ChatGPT for Inc=
+ident Detection and Response <br>
+2. Deep Learning &amp; Neural Networks <br>
+3. AI-Powered Threat Modelling <br>
+4. Master Python and Generative AI for Advanced Analytics <br>
+5. Smart AI for Business Professionals <br>
+6. Practical Artificial Intelligence for Professionals</td>
+</tr>
+<tr>
+<td style=3D"padding: 0px 40px 40px;">=E2=80=A6and many more to help you <s=
+trong>apply AI effectively in modern cybersecurity.</strong></td>
+</tr>
+<tr>
+<td align=3D"center">
+<table width=3D"240" bgcolor=3D"#d91f26" border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"10">
+<tr>
+<td align=3D"center" style=3D"color: #ffffff; font-size: 20px; line-height:=
+ 24px;"><a href=3D"https://email.eccouncil.org/lt.php?x=3D4lZy~GDGJXGh75_A-=
+g~KhRVuAHEnj_UkjegvjHnLUnPL7s.v-Uy7xeR03XyliEA0_ueglPHFKnCf957Azd-YVfFs3Xyk=
+kK" target=3D"_blank" style=3D"text-decoration: none; color: #ffffff;"> <st=
+rong>Explore AI Courses</strong> </a></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td style=3D"padding: 40px;">Warm Regards, <br><strong>Team CodeRed</strong=
+></td>
+</tr>
+</table>
+<table width=3D"590" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"border: 1px solid #000000;">
+<tr>
+<td align=3D"center" style=3D"padding: 20px 20px 20px;"><strong style=3D"fo=
+nt-size: 22px; line-height: 26px;">Missed CodeRed's latest update again? <b=
+r>
+Move mails to Primary from Promotions now!</strong></td>
+</tr>
+<tr>
+<td align=3D"center" style=3D"padding-bottom: 20px;"><img src=3D"https://ed=
+m-image.s3.us-west-2.amazonaws.com/2026/April/Myth-vs-Fact-EDM/Move-Gif.gif=
+" alt=3D"" width=3D"530"></td>
+</tr>
+</table>
+<table width=3D"650" border=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+<tr>
+<td align=3D"center" style=3D"padding: 10px;">&nbsp;</td>
+</tr>
+</table><!--Section02-End--> <!--Footer-Start-->
+<table bgcolor=3D"#000000" align=3D"center" width=3D"650" cellspacing=3D"0"=
+ cellpadding=3D"10" style=3D"font-size:12px; line-height: 14px; font-family=
+:Arial,Helvetica,sans-serif;text-align:center;padding:10px; background-colo=
+r: #000000;">
+<tr>
+<td width=3D"299" align=3D"center" style=3D"color: #ffffff;"><strong>Copyri=
+ght =C2=A9 2026</strong> <a href=3D"https://email.eccouncil.org/lt.php?x=3D=
+4lZy~GDGJXGh75_A-g~KhRVuAHEnj_UkjegvjHnLUnPL7s.v-Uy7xeR03XyliEA0_ueglPHFKnC=
+f957Azd-YVfFs3Xyjjq" style=3D"color:#ffffff; text-decoration: none;" target=
+=3D"_blank"> CodeRed</a> <span style=3D"color: #ffffff;">|</span> <a href=
+=3D"https://email.eccouncil.org/lt.php?x=3D4lZy~GDGJXGh75_A-g~KhRVuAHEnj_Uk=
+jegvjHnLUnPL7s.v-Uy7xeR03XyliEA0_ueglPHFKnCf957Azd-YVfFs3Xyjk8" style=3D"co=
+lor:#ffffff" target=3D"_blank"> Privacy Statement</a></td>
+</tr>
+</table><!--Footer-End--></td>
+</tr>
+</table>
+<br>
+<div id=3D"ac-footer" style=3D"clear:both;background-color:inherit;backgrou=
+nd:inherit;min-width:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;padding=
+:20px;color:#000000;font-size:11px;font-family:arial,helvetica,sans-serif;l=
+ine-height:140%;line-height:1.4;text-align:center;box-sizing:border-box;">
+<center>
+Sent to:<span style=3D"font-size:11px;font-family:arial,helvetica,sans-seri=
+f;font-weight:normal;text-decoration:none;outline:none;">Joshimaulikk@gmail=
+.com</span>
+<br>
+<br><a href=3D"http://email.eccouncil.org/proc.php?c=3D2906&m=3D2964&s=3D34=
+18939be5ee3d5746f030a98a3b8cfa&d=3D499050&v=3D2&nl=3D6&act=3Dunsub" style=
+=3D"font-size:11px;font-family:arial,helvetica,sans-serif;font-weight:bold;=
+text-decoration:underline;"><span style=3D"font-weight:bold;text-decoration=
+:underline;">Unsubscribe</span></a>
+<br>
+<br>
+EC-Council International Limited, Sun Ave NE 101C, Albuquerque, New Mexico =
+87109, United States
+</center>
+</div>
+<br>
+<img src=3D"https://email.eccouncil.org/lt.php?x=3D4TZi05LMIXcKHhVpyt9GW.lu=
+3a7VjQQjjPk0YnTJV3Cc5s3A0AxIgeieAq4RvETylu4vYHF2Z-GbT8jt~xu8jlGoQH6pjdNgy~E=
+gYU" border=3D"0" width=3D"1" height=3D"1" style=3D"display:block;width:1px=
+!important;min-width:1px!important;max-width:1px!important;height:1px!impor=
+tant;border:0;overflow:hidden;"/>
+</body>
+</html>
+------=_Part_5948301_536945991.1777727083154--

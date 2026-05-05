@@ -1,0 +1,44 @@
+MIME-Version: 1.0
+Date: Tue, 16 Jan 2024 14:30:00 +0000
+Message-ID: <clean001@company.com>
+From: "Alice Johnson" <alice.johnson@company.com>
+To: bob.smith@company.com
+Subject: Q1 Project Status Update
+Authentication-Results: mx.company.com;
+   spf=pass (sender IP is 203.0.113.10) smtp.mailfrom=company.com;
+   dkim=pass header.i=@company.com;
+   dmarc=pass action=none header.from=company.com
+Content-Type: multipart/mixed; boundary="LEGIT_BOUNDARY_002"
+
+--LEGIT_BOUNDARY_002
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+Hi Bob,
+
+Hope you are doing well. I wanted to share the Q1 project status update
+with you before tomorrow's meeting.
+
+Key updates this quarter:
+- Feature A deployment completed on January 10
+- Performance improvements: page load reduced by 35%
+- Security patches applied to all production servers
+- Team expanded by 2 new developers
+
+Please review the attached report and let me know if you have any questions.
+Looking forward to our discussion tomorrow at 10 AM.
+
+Best regards,
+Alice Johnson
+Senior Developer, Acme Corp
+Tel: +1-555-0100
+
+--LEGIT_BOUNDARY_002
+Content-Type: application/pdf
+Content-Disposition: attachment; filename="Q1_Status_Report.pdf"
+Content-Transfer-Encoding: base64
+
+JVBERi0xLjQKMSAwIG9iagogIDw8IC9UeXBlIC9DYXRhbG9nCiAgICAgL1BhZ2VzIDIgMCBSCiAg
+Pj4KZW5kb2JqCg==
+
+--LEGIT_BOUNDARY_002--
